@@ -1,155 +1,132 @@
-<!-- <?php
-
-
-
-        // $nama = 'Galih Previand';
-        // $umur = 20;
-
-        // echo '<H1>Latihan PHP dasar</H1> ';
-
-        // //contoh 1
-        // echo ' Nama saya adalah ', $nama, ' dan umur saya adalah ', $umur, ' tahun ';
-
-        // echo "<br> nama saya $nama dan umur saya $umur tahun <br> ";
-
-        // $namaAdik = 'Rizky';
-        // $umurAdik = 18;
-        // $selisiUmur = $umur - $umurAdik;
-
-        // echo '<br> Nama adik saya adalah ', $namaAdik, ' dan umur adik saya adalah ', $umurAdik, ' tahun';
-
-        // //contoh 3
-        // echo "<br> Nama adik saya adalah $namaAdik dan umur adik saya adalah $umurAdik tahun <br>";
-
-        // echo '<br> selisih umur saya dan adik saya adalah ', $umur - $umurAdik, ' tahun';
-
-        //contoh 4
-        // echo "<br> selisih umur saya dan adik saya adalah $selisiUmur tahun <br>";
-
-        ?> -->
-
 <!DOCTYPE html>
 <html lang="en">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Mahasiswa</title>
+    <title>Document</title>
 </head>
-table, th, td {
-border:1px solid black;
-}
+
+<style>
+    .hm-gradient {
+        background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
+    }
 </style>
 
-<body>
-    <h1>Data Fakultas</h1>
-
-    <table border="1">
-        <h2>Data Mahasiswa </h2>
-        <tr>
-            <!-- <th>No</th> -->
-            <th>NIM</th>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>Tanggal Lahir</th>
-            <th>Jenis Kelamin</th>
-            <th>Jurusan</th>
-        </tr>
-
-
-
-        <?php
-        include 'koneksi.php';
-
-
-        $no = 1;
-        $data = mysqli_query($koneksi, "SELECT * FROM mahasiswa");
-        while ($hasil = mysqli_fetch_array($data)) {
-        ?>
-            <tr>
-                <!-- <td><?php echo $no++; ?></td> -->
-                <td><?php echo $hasil['nim']; ?></td>
-                <td><?php echo $hasil['nama']; ?></td>
-                <td><?php echo $hasil['alamat']; ?></td>
-                <td><?php echo $hasil['tanggal_lahir']; ?></td>
-                <td><?php echo $hasil['jenis_kelamin']; ?></td>
-                <td><?php echo $hasil['kode_jurusan']; ?></td>
-            </tr>
-        <?php
-        }
-        ?>
-    </table>
-
-
-    <table border="1">
-        <h2>Data Jurusan </h2>
-        <tr>
-            <!-- <th>no</th> -->
-            <th>Id Jurusan</th>
-            <th>kode Jurusan</th>
-            <th>Nama Jurusan</th>
-        </tr>
-
-        <?php
-        include 'koneksi.php';
-
-
-        $no = 1;
-        $data = mysqli_query($koneksi, "SELECT * FROM jurusan");
-        while ($hasil = mysqli_fetch_array($data)) {
-        ?>
-            <tr>
-                <!-- <td><?php echo $no++; ?></td> -->
-                <td><?php echo $hasil['id_jurusan']; ?></td>
-                <td><?php echo $hasil['kode_jurusan']; ?></td>
-                <td><?php echo $hasil['nama_jurusan']; ?></td>
-
-            </tr>
-        <?php
-        }
-        ?>
-
-    </table>
-
-    <table border="1">
-        <h2>Data Jurusan </h2>
-        <tr>
-            <th>no</th>
-            <th>nim</th>
-            <th>nama</th>
-            <th>alamat</th>
-            <th>tanggal lahir</th>
-            <th>jenis kelamin</th>
-            <th>kode Jurusan</th>
-            <th>Nama Jurusan</th>
-
-        </tr>
-
-        <?php
-        include 'koneksi.php';
-
-
-        $no = 1;
-        $data = mysqli_query($koneksi, "SELECT * FROM mahasiswa INNER JOIN jurusan ON mahasiswa.kode_jurusan = jurusan.kode_jurusan");
-        while ($hasil = mysqli_fetch_array($data)) {
-        ?>
-            <tr>
-                <td><?php echo $no++; ?></td>
-                <td><?php echo $hasil['nim']; ?></td>
-                <td><?php echo $hasil['nama']; ?></td>
-                <td><?php echo $hasil['alamat']; ?></td>
-                <td><?php echo $hasil['tanggal_lahir']; ?></td>
-                <td><?php echo $hasil['jenis_kelamin']; ?></td>
-                <td><?php echo $hasil['kode_jurusan']; ?></td>
-                <td><?php echo $hasil['nama_jurusan']; ?></td>
-
-            </tr>
-        <?php
-        }
-        ?>
-
-    </table>
+<body class="hm-gradient">
+    <!--MDB Tables-->
+    <div class="container mt-4 ">
+        <div class="card">
+            <div class="card-body">
+                <!-- Grid row -->
+                <div class="row">
+                    <!-- Grid column -->
+                    <div class="col-md-10">
+                        <h2 class="py-3 text-center font-bold font-up blue-text">Jurusan</h2>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <button type="button" class="btn btn-primary" onclick="window.location='tambahData_jurusan.php'"> Tambah Data </button>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID Jurusan</th>
+                                        <th>Kode Jurusan</th>
+                                        <th>Nama Jurusan</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    include "koneksi.php";
+                                    $sql = "SELECT * FROM jurusan";
+                                    $query = mysqli_query($koneksi, $sql);
+                                    while ($data = mysqli_fetch_array($query)) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $data['id_jurusan']; ?></td>
+                                            <td><?php echo $data['kode_jurusan']; ?></td>
+                                            <td><?php echo $data['nama_jurusan']; ?></td>
+                                            <td>
+                                                <a href="editData_jurusan.php?id_jurusan=<?php echo $data['id_jurusan']; ?>" class="btn btn-warning">Edit</a>
+                                                <a href="delete_jurusan.php?id_jurusan=<?php echo $data['id_jurusan']; ?>" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-10">
+                    <h2 class="py-3 text-center font-bold font-up blue-text">Mahasiswa</h2>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <div class="row">
+                <div class="col-md-15">
+                    <div class="table-responsive">
+                        <button type="button" class="btn btn-primary" onclick="window.location='tambahData_mahasiswa.php'"> Tambah Data </button>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID Mahasiswa</th>
+                                    <th>Nim Mahasiswa</th>
+                                    <th>Nama Mahasiswa</th>
+                                    <th>Alamat Mahasiswa</th>
+                                    <th>Tempat Lahir</th>
+                                    <th>Tanggal Lahir</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Kode Jurusan</th>
+                                    <th>ID Jurusan</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                include "koneksi.php";
+                                $sql = "SELECT * FROM mahasiswa inner join jurusan on mahasiswa.id_jurusan=jurusan.id_jurusan";
+                                $query = mysqli_query($koneksi, $sql);
+                                while ($data = mysqli_fetch_array($query)) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $data['id_mahasiswa']; ?></td>
+                                        <td><?php echo $data['nim']; ?></td>
+                                        <td><?php echo $data['nama']; ?></td>
+                                        <td><?php echo $data['alamat']; ?></td>
+                                        <td><?php echo $data['tempat_lahir']; ?></td>
+                                        <td><?php echo $data['tanggal_lahir']; ?></td>
+                                        <td><?php echo $data['jenis_kelamin']; ?></td>
+                                        <td><?php echo $data['kode_jurusan']; ?></td>
+                                        <td><?php echo $data['id_jurusan']; ?></td>
+                                        <td>
+                                            <!-- <a href="tambahData_mahasiswa.php?id_mahasiswa=<?php echo $data['id_mahasiswa']; ?>" class="btn btn-primary">Tambah</a> -->
+                                            <a href="editData_mahasiswa.php?id_mahasiswa=<?php echo $data['id_mahasiswa']; ?>" class="btn btn-warning">Edit</a>
+                                            <a href="delete_mahasiswa.php?id_mahasiswa=<?php echo $data['id_mahasiswa']; ?>" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
