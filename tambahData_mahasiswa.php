@@ -18,7 +18,6 @@ if (isset($_POST['submit'])) {
     } else {
         die("Gagal menambah Data");
     }
-    
 }
 ?>
 
@@ -92,10 +91,17 @@ if (isset($_POST['submit'])) {
                         "> ID Jurusan </label>
                         <select class="form-select" aria-label="Default select example" name="id_jurusan">
                             <option selected>Pilih ID Jurusan</option>
-                            <option value="1">1 TI</option>
-                            <option value="2">2 SIB</option>
-                            <option value="3">3 AN </option>
-                            <option value="4">4 FIK</option>
+                            <?php
+                            include "koneksi.php";
+                            $sql = "SELECT * FROM jurusan";
+                            $query = mysqli_query($koneksi, $sql);
+                            while ($data = mysqli_fetch_array($query)) {
+                                echo "<option value='$data[id_jurusan]'>$data[id_jurusan]</option>";
+                            }
+                            ?> </option>
+
+                            </option>
+
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
